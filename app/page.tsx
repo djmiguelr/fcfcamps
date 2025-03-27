@@ -69,7 +69,7 @@ const Page: FC<PageProps> = () => {
                 />
               </div>
               {/* Imagen para móvil */}
-              <div className="md:hidden w-[600px] h-[697px] relative mx-auto">
+              <div className="md:hidden w-full max-w-[70vw] h-auto aspect-[600/697] relative mx-auto">
                 <Image
                   src="/logo-camps-movil.png"
                   alt="FCF Camps 2025"
