@@ -48,10 +48,14 @@ export const metadata: Metadata = {
     },
   },
   category: 'sports',
+  metadataBase: new URL('https://www.fcfcamps.com'),
+  alternates: {
+    canonical: 'https://www.fcfcamps.com',
+  },
   openGraph: {
     title: 'FCF Camps | Campamentos Oficiales de la Selección Colombia',
     description: 'Entrena como un profesional con la metodología oficial de la Selección Colombia. Campamentos de fútbol para niños y jóvenes de 6 a 17 años.',
-    url: 'https://camps.fcf.com.co',
+    url: 'https://www.fcfcamps.com',
     siteName: 'FCF Camps',
     images: [
       {

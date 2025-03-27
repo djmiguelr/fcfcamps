@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://camps.fcf.com.co'
+  const baseUrl = 'https://www.fcfcamps.com'
   
   return [
     {

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://camps.fcf.com.co/sitemap.xml
+Sitemap: https://www.fcfcamps.com/sitemap.xml
 
 # Host
-Host: https://camps.fcf.com.co
+Host: https://www.fcfcamps.com
