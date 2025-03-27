@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://camps.fcf.com.co/sitemap.xml
+
+# Host
+Host: https://camps.fcf.com.co
