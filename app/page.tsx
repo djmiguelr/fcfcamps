@@ -105,11 +105,11 @@ const Page: FC<PageProps> = () => {
           </div>
 
           <p className="mb-8 max-w-3xl mx-auto text-xl md:text-2xl text-white drop-shadow-md animate-fade-in">
-            ¡Separa tu cupo ahora y vive una experiencia inolvidable con los mejores entrenadores de fútbol!
+            ¡Separa tu cupo ahora y vive la experiencia de estar convocado a la Selección Colombia!
           </p>
 
           <div className="mb-10">
-            <CountdownTimer targetDate="2025-07-15T00:00:00" />
+            <CountdownTimer targetDate="2025-06-16T00:00:00" />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -271,7 +271,7 @@ const Page: FC<PageProps> = () => {
               INFORMACIÓN IMPORTANTE
             </div>
             <h2 className="text-center text-4xl md:text-5xl font-bold mb-4 text-white">
-              DETALLES DEL <span className="text-yellow-400">CAMPAMENTO</span>
+              Detalles de los <span className="text-yellow-400">camps</span>
             </h2>
             <div className="w-24 h-1 bg-red-500 mx-auto"></div>
           </div>
@@ -291,8 +291,8 @@ const Page: FC<PageProps> = () => {
                 <MapPin className="h-12 w-12 text-yellow-400 flex-shrink-0" />
                 <div>
                   <h3 className="text-2xl font-bold mb-2 text-yellow-300">Ubicación</h3>
-                  <p className="text-lg">Centro Deportivo FCF - Bogotá</p>
-                  <p className="text-lg">Complejo Deportivo - Barranquilla</p>
+                  <p className="text-lg">Sede Deportiva FCF - Bogotá</p>
+                  <p className="text-lg">Sede Deportiva FCF - Barranquilla</p>
                 </div>
               </div>
 
@@ -309,7 +309,7 @@ const Page: FC<PageProps> = () => {
             <div className="rounded-2xl overflow-hidden shadow-2xl transform hover:rotate-3 transition-transform duration-500 group">
               <div className="relative">
                 <Image
-                  src="/Instalaciones-de-primera.png"
+                  src="/Instalaciones-de-primera.webp"
                   alt="Instalaciones FCF Camps"
                   width={800}
                   height={700}

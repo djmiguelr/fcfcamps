@@ -15,12 +15,13 @@ const categories = [
     ageRange: "6 a 9 años",
     description:
       "Programa diseñado para introducir a los más pequeños al mundo del fútbol de manera divertida y educativa.",
-    imageSrc: "/iniciacion.png",
+    imageSrc: "/Iniciacion.webp",
     benefits: [
+      "Beneficios específicos de esta categoría",
       "Desarrollo de habilidades motoras básicas",
       "Introducción a las reglas del fútbol",
-      "Juegos y actividades lúdicas",
       "Fomento del trabajo en equipo",
+      "Tecnología aplicada al futbol"
     ],
   },
   {
@@ -28,7 +29,7 @@ const categories = [
     title: "Pre Infantil",
     ageRange: "10 a 11 años",
     description: "Etapa de desarrollo técnico donde los niños comienzan a perfeccionar sus habilidades futbolísticas.",
-    imageSrc: "/pre-infantil.png",
+    imageSrc: "/pre-infantil.webp",
     benefits: [
       "Perfeccionamiento de técnicas básicas",
       "Introducción a conceptos tácticos",
@@ -41,7 +42,7 @@ const categories = [
     title: "Infantil",
     ageRange: "12 a 13 años",
     description: "Programa que profundiza en aspectos técnicos y tácticos del fútbol.",
-    imageSrc: "/infantil.png",
+    imageSrc: "/infantil.webp",
     benefits: [
       "Entrenamiento técnico avanzado",
       "Comprensión táctica del juego",
@@ -54,7 +55,7 @@ const categories = [
     title: "Pre Juvenil Femenino",
     ageRange: "14 a 15 años",
     description: "Programa especializado para chicas que busca potenciar sus habilidades futbolísticas.",
-    imageSrc: "/pre-juvenil-femenino.png",
+    imageSrc: "/pre-juvenil-femenino.webp",
     benefits: [
       "Entrenamiento adaptado al fútbol femenino",
       "Desarrollo técnico-táctico avanzado",
@@ -67,7 +68,7 @@ const categories = [
     title: "Pre Juvenil Masculino",
     ageRange: "14 a 15 años",
     description: "Etapa de especialización donde los jóvenes desarrollan aspectos técnicos avanzados.",
-    imageSrc: "/pre-juvenil-masculino.png",
+    imageSrc: "/pre-juvenil-masculino.webp",
     benefits: [
       "Técnicas avanzadas de juego",
       "Sistemas tácticos complejos",
@@ -80,7 +81,7 @@ const categories = [
     title: "Juvenil Femenino",
     ageRange: "16 a 17 años",
     description: "Programa de alto rendimiento para jugadoras que buscan perfeccionar sus habilidades.",
-    imageSrc: "/juvenil-femenino.png",
+    imageSrc: "/juvenil-femenino.webp",
     benefits: [
       "Entrenamiento de alto rendimiento",
       "Táctica avanzada de juego",
@@ -94,7 +95,7 @@ const categories = [
     ageRange: "16 a 17 años",
     description:
       "Programa de alto nivel para jóvenes futbolistas que buscan perfeccionar todos los aspectos del juego.",
-    imageSrc: "/juvenil-masculino.png",
+    imageSrc: "/juvenil-masculino.webp",
     benefits: [
       "Entrenamiento de élite",
       "Sistemas tácticos profesionales",
@@ -156,14 +157,14 @@ export function CategoriesSection() {
           >
             <div className="relative h-80">
               <Image
-                src="/sede-bogota.png"
+                src="/sede-bogota.webp"
                 alt="Sede Bogotá"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-transparent flex flex-col justify-end p-6">
                 <h3 className="text-3xl font-bold text-white mb-3">Sede Bogotá</h3>
-                <p className="text-blue-100 mb-4">Centro Deportivo FCF - Bogotá</p>
+                <p className="text-blue-100 mb-4">Sede Deportiva FCF - Bogotá</p>
                 <button className="mt-2 bg-gradient-to-r from-yellow-500 to-yellow-300 hover:from-yellow-400 hover:to-yellow-200 text-blue-900 font-bold py-3 px-6 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
                   RESERVA AHORA
                 </button>
@@ -181,14 +182,14 @@ export function CategoriesSection() {
           >
             <div className="relative h-80">
               <Image
-                src="/sede-barranquilla.png"
+                src="/sede-barranquilla.webp"
                 alt="Sede Barranquilla"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-transparent flex flex-col justify-end p-6">
                 <h3 className="text-3xl font-bold text-white mb-3">Sede Barranquilla</h3>
-                <p className="text-blue-100 mb-4">Complejo Deportivo - Barranquilla</p>
+                <p className="text-blue-100 mb-4">Sede Deportiva FCF - Barranquilla</p>
                 <button className="mt-2 bg-gradient-to-r from-yellow-500 to-yellow-300 hover:from-yellow-400 hover:to-yellow-200 text-blue-900 font-bold py-3 px-6 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg">
                   RESERVA AHORA
                 </button>
