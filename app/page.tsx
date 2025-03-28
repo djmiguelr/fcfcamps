@@ -105,7 +105,7 @@ const Page: FC<PageProps> = () => {
           </div>
 
           <p className="mb-8 max-w-3xl mx-auto text-xl md:text-2xl text-white drop-shadow-md animate-fade-in">
-            ¡Separa tu cupo ahora y vive la experiencia de estar convocado a la Selección Colombia!
+          ¡Separa tu cupo ahora y vive la experiencia de lo que se siente al entrar a una concentración de la Selección Colombia en nuestras sedes deportivas!
           </p>
 
           <div className="mb-10">
@@ -136,29 +136,6 @@ const Page: FC<PageProps> = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats-section" className="bg-gradient-to-r from-blue-700 via-blue-600 to-blue-700 py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="bg-blue-800/50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-300 backdrop-blur-sm">
-              <AnimatedNumber value={500} suffix="+" />
-              <p className="text-yellow-300 font-medium">Niños Felices</p>
-            </div>
-            <div className="bg-blue-800/50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-300 backdrop-blur-sm">
-              <AnimatedNumber value={20} suffix="+" />
-              <p className="text-yellow-300 font-medium">Entrenadores Pro</p>
-            </div>
-            <div className="bg-blue-800/50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-300 backdrop-blur-sm">
-              <AnimatedNumber value={5} suffix=" años" />
-              <p className="text-yellow-300 font-medium">De Experiencia</p>
-            </div>
-            <div className="bg-blue-800/50 rounded-xl p-6 transform hover:scale-105 transition-transform duration-300 backdrop-blur-sm">
-              <AnimatedNumber value={100} suffix="%" />
-              <p className="text-yellow-300 font-medium">Diversión Garantizada</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Benefits Section */}
       <section id="beneficios" className="relative bg-gradient-to-b from-blue-600 to-blue-800 py-20 overflow-hidden">

@@ -142,7 +142,29 @@ export function CategoriesSection() {
           <p className="text-center text-xl mb-6 text-gray-600 max-w-3xl mx-auto">
             Selecciona la sede perfecta para tu campeón
           </p>
-          <div className="w-24 h-1 bg-yellow-400 mx-auto mb-12"></div>
+          <div className="w-24 h-1 bg-yellow-400 mx-auto mb-8"></div>
+
+          {/* Pricing Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-2xl mx-auto mb-12 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300"
+          >
+            <div className="text-center">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Valor del Camps por semana en Barranquilla y Bogotá
+              </h3>
+              <div className="inline-block bg-blue-500/30 rounded-xl px-8 py-4 mb-4">
+                <p className="text-3xl md:text-5xl font-extrabold text-yellow-400 mb-2">
+                  $1.690.000 + IVA
+                </p>
+                <p className="text-sm md:text-base text-blue-100 italic">
+                  (Este precio es válido únicamente por una semana)
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Sedes */}
