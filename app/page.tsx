@@ -44,17 +44,15 @@ const Page: FC<PageProps> = () => {
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-screen bg-gradient-to-b from-black/50 to-black/80">
         <YouTubeBackground videoId="s-LnYw8I-Ys" />
-        <div className="container relative z-10 mx-auto px-4 py-32 text-center">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center max-w-7xl">
           <FloatingBalls />
           
-          <div className="space-y-16 animate-fade-in-up">
-            {/* Main Logo with Glow Effect */}
-            <div className="transform transition-all duration-700 hover:scale-105 relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-700 opacity-0 group-hover:opacity-20 blur-2xl transition-opacity duration-700 rounded-3xl"></div>
+          <div className="space-y-16 animate-fade-in-up max-w-6xl mx-auto">
+            {/* Main Logo */}
+            <div className="transform transition-transform duration-500 hover:scale-[1.02]">
               <div className="flex flex-col items-center justify-center">
                 {/* Desktop Logo */}
                 <div className="hidden md:block w-[1200px] h-[350px] relative">
-                  <div className="absolute inset-0 bg-blue-500/10 rounded-3xl backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <Image
                     src="/logo-camps-escritorio.png"
                     alt="FCF Camps 2025"
@@ -65,7 +63,6 @@ const Page: FC<PageProps> = () => {
                 </div>
                 {/* Mobile Logo */}
                 <div className="md:hidden w-full max-w-[70vw] h-auto aspect-[600/697] relative mx-auto">
-                  <div className="absolute inset-0 bg-blue-500/10 rounded-3xl backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <Image
                     src="/logo-camps-movil.png"
                     alt="FCF Camps 2025"
@@ -81,55 +78,56 @@ const Page: FC<PageProps> = () => {
             <div className="space-y-8">
               {/* Launch Date Box */}
               <div className="relative group">
-                {/* Background Effects */}
-                <div className="absolute -inset-10 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 opacity-75 blur-3xl group-hover:opacity-100 transition-opacity duration-500 animate-pulse-slow"></div>
-                <div className="absolute -inset-20 bg-gradient-to-r from-blue-500 via-yellow-400 to-blue-500 opacity-30 blur-3xl group-hover:opacity-50 transition-opacity duration-700 animate-pulse"></div>
+                {/* Background Effects - Football field inspired */}
+                <div className="absolute -inset-10 bg-gradient-to-r from-green-500/30 via-green-600/30 to-green-500/30 opacity-50 blur-3xl group-hover:opacity-75 transition-opacity duration-500"></div>
                 
                 {/* Main Container */}
                 <div className="relative transform hover:scale-[1.02] transition-all duration-700 cursor-pointer">
-                  {/* Top Decorative Element */}
-                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+                  {/* Colombian Flag Stripes */}
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-48 h-2 bg-gradient-to-r from-yellow-400 via-blue-600 to-red-500"></div>
                   
-                  {/* Content Box */}
-                  <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 p-0.5 rounded-3xl">
-                    <div className="relative bg-black rounded-3xl p-8 md:p-12 overflow-hidden">
-                      {/* Animated Border */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-red-500 to-yellow-400 opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                  {/* Content Box with Football Pattern */}
+                  <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 p-0.5 rounded-3xl max-w-4xl mx-auto">
+                    <div className="relative bg-gradient-to-b from-black/95 to-black/90 rounded-3xl px-6 sm:px-8 md:px-12 py-8 md:py-12 overflow-hidden">
+                      {/* Soccer Ball Pattern */}
+                      <div className="absolute inset-0 opacity-5 bg-[url('/soccer-pattern.png')] bg-repeat"></div>
                       
                       {/* Content */}
-                      <div className="relative z-10 text-center space-y-6">
-                        {/* Title with Shine Effect */}
+                      <div className="relative z-10 text-center space-y-8">
+                        {/* Title with Playful Style */}
                         <div className="relative inline-block">
-                          <div className="text-4xl md:text-6xl font-black">
-                            <span className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-300 text-transparent bg-clip-text animate-gradient">
-                              GRAN APERTURA
+                          <div className="text-4xl md:text-6xl font-black transform -rotate-2">
+                            <span className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-300 text-transparent bg-clip-text animate-gradient inline-block">
+                              ¡GRAN APERTURA!
                             </span>
                           </div>
-                          <div className="mt-2 text-2xl md:text-3xl font-bold">
-                            <span className="bg-gradient-to-r from-red-500 to-red-600 text-transparent bg-clip-text">
+                          <div className="mt-3 text-2xl md:text-3xl font-bold transform rotate-1">
+                            <span className="bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text inline-block">
                               DE VENTAS
                             </span>
                           </div>
-                          {/* Shine Animation */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-45 animate-shine"></div>
                         </div>
 
-                        {/* Date Display */}
+                        {/* Date Display with Fun Elements */}
                         <div className="relative mt-8 transform group-hover:scale-105 transition-transform duration-500">
-                          <div className="text-7xl md:text-9xl font-black tracking-tighter">
+                          <div className="text-7xl md:text-9xl font-black tracking-tight flex items-center justify-center gap-2">
+                            {/* Soccer Ball Icon */}
+                            <span className="text-4xl md:text-5xl text-yellow-400 animate-bounce">⚽</span>
                             <span className="bg-gradient-to-br from-yellow-300 via-white to-yellow-400 text-transparent bg-clip-text animate-gradient-slow inline-block transform hover:scale-105 transition-transform duration-300">
                               9
                             </span>
-                            <span className="bg-gradient-to-br from-blue-400 to-blue-600 text-transparent bg-clip-text mx-2">
+                            <span className="bg-gradient-to-br from-blue-400 to-blue-600 text-transparent bg-clip-text">
                               DE
                             </span>
                             <span className="bg-gradient-to-br from-red-500 via-red-600 to-red-500 text-transparent bg-clip-text animate-gradient-slow inline-block transform hover:scale-105 transition-transform duration-300">
                               ABRIL
                             </span>
+                            {/* Soccer Ball Icon */}
+                            <span className="text-4xl md:text-5xl text-yellow-400 animate-bounce delay-150">⚽</span>
                           </div>
                           
-                          {/* Bottom Decorative Element */}
-                          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent"></div>
+                          {/* Colombian Flag Elements */}
+                          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-48 h-2 bg-gradient-to-r from-yellow-400 via-blue-600 to-red-500"></div>
                         </div>
                       </div>
                     </div>
