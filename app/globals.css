@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 3s ease infinite;
+  background-size: 200% 200%;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -51,7 +68,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-[#e5e7eb];
   }
   body {
     @apply bg-background text-foreground;

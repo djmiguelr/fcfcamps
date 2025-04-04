@@ -133,9 +133,6 @@ export function CategoriesSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-12">
-          <div className="inline-block bg-blue-100 text-blue-800 font-bold px-4 py-2 rounded-lg text-sm mb-4 transform rotate-2">
-            ¡ENCUENTRA TU LUGAR!
-          </div>
           <h2 className="text-center text-4xl md:text-5xl font-bold mb-4 text-blue-600">
             RESERVA TU <span className="text-red-500">CUPO AHORA</span>
           </h2>
