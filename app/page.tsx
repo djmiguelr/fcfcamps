@@ -140,7 +140,7 @@ const Page: FC<PageProps> = () => {
                 <p className="text-yellow-300 text-xl md:text-2xl font-bold tracking-wide animate-pulse">
                   CUENTA REGRESIVA PARA EL INICIO DE VENTAS
                 </p>
-                <CountdownTimer targetDate="2025-04-09T00:00:00-05:00" />
+                <CountdownTimer targetDate="2025-04-09T18:00:00-05:00" />
               </div>
             </div>
             <div className="relative">
