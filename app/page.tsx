@@ -11,6 +11,7 @@ import { AnimatedNumber } from "@/components/animated-number";
 import { TestimonialSlider } from "@/components/testimonial-slider";
 import { CategoriesSection } from "@/components/categories-section";
 import { BenefitCard } from "@/components/benefit-card";
+import { HighDemandModal } from "@/components/high-demand-modal";
 import type { FC } from 'react';
 
 interface PageProps {}
@@ -24,7 +25,7 @@ interface BallPosition {
 }
 
 const Page: FC<PageProps> = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHighDemandModalOpen, setIsHighDemandModalOpen] = useState(true);
   const [selectedCity, setSelectedCity] = useState("Bogotá");
   const [ballPositions, setBallPositions] = useState<BallPosition[]>([]);
 
@@ -41,6 +42,10 @@ const Page: FC<PageProps> = () => {
 
   return (
     <div className="flex min-h-screen flex-col overflow-hidden">
+      <HighDemandModal
+        isOpen={isHighDemandModalOpen}
+        onClose={() => setIsHighDemandModalOpen(false)}
+      />
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center overflow-hidden min-h-screen bg-gradient-to-b from-black/50 to-black/80">
         <YouTubeBackground videoId="s-LnYw8I-Ys" />
