@@ -277,7 +277,7 @@ export function CategoriesSection() {
       {/* Modal para detalles de categoría */}
       <CategoryModal isOpen={isModalOpen} onClose={closeModal} category={selectedCategory} />
 
-      {/* Modal de pre-inscripción */}
+      {/* Modal de Inscripción */}
       <PreRegistrationModal
         isOpen={isRegistrationModalOpen}
         onClose={() => setIsRegistrationModalOpen(false)}

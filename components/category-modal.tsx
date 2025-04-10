@@ -38,7 +38,7 @@ export function CategoryModal({ isOpen, onClose, category }: CategoryModalProps)
   }, [isOpen])
 
   const handleReserveClick = () => {
-    // Cerrar el modal actual y abrir el modal de pre-inscripción
+    // Cerrar el modal actual y abrir el modal de Inscripción
     onClose()
     setIsCheckoutModalOpen(true)
   }
@@ -206,7 +206,7 @@ export function CategoryModal({ isOpen, onClose, category }: CategoryModalProps)
         )}
       </AnimatePresence>
 
-      {/* Modal de pre-inscripción para la categoría */}
+      {/* Modal de Inscripción para la categoría */}
       {category && (
         <CategoryCheckoutModal
           isOpen={isCheckoutModalOpen}

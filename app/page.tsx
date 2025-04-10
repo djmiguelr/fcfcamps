@@ -25,7 +25,7 @@ interface BallPosition {
 }
 
 const Page: FC<PageProps> = () => {
-  const [isHighDemandModalOpen, setIsHighDemandModalOpen] = useState(true);
+  const [isHighDemandModalOpen, setIsHighDemandModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState("Bogotá");
   const [ballPositions, setBallPositions] = useState<BallPosition[]>([]);
 
@@ -103,12 +103,7 @@ const Page: FC<PageProps> = () => {
                         <div className="relative inline-block">
                           <div className="text-4xl md:text-6xl font-black transform -rotate-2">
                             <span className="bg-gradient-to-br from-yellow-300 via-yellow-400 to-yellow-300 text-transparent bg-clip-text animate-gradient inline-block">
-                              ¡GRAN APERTURA!
-                            </span>
-                          </div>
-                          <div className="mt-3 text-2xl md:text-3xl font-bold transform rotate-1">
-                            <span className="bg-gradient-to-r from-blue-400 to-blue-500 text-transparent bg-clip-text inline-block">
-                              DE VENTAS
+                              ¡INSCRIBETE AHORA!
                             </span>
                           </div>
                         </div>
@@ -118,17 +113,6 @@ const Page: FC<PageProps> = () => {
                           <div className="text-7xl md:text-9xl font-black tracking-tight flex items-center justify-center gap-2">
                             {/* Soccer Ball Icon */}
                             <span className="text-4xl md:text-5xl text-yellow-400 animate-bounce">⚽</span>
-                            <span className="bg-gradient-to-br from-yellow-300 via-white to-yellow-400 text-transparent bg-clip-text animate-gradient-slow inline-block transform hover:scale-105 transition-transform duration-300">
-                              9
-                            </span>
-                            <span className="bg-gradient-to-br from-blue-400 to-blue-600 text-transparent bg-clip-text">
-                              DE
-                            </span>
-                            <span className="bg-gradient-to-br from-red-500 via-red-600 to-red-500 text-transparent bg-clip-text animate-gradient-slow inline-block transform hover:scale-105 transition-transform duration-300">
-                              ABRIL
-                            </span>
-                            {/* Soccer Ball Icon */}
-                            <span className="text-4xl md:text-5xl text-yellow-400 animate-bounce delay-150">⚽</span>
                           </div>
                           
                           {/* Colombian Flag Elements */}
@@ -141,12 +125,12 @@ const Page: FC<PageProps> = () => {
               </div>
 
               {/* Countdown Timer */}
-              <div className="space-y-4 mt-8">
+              {/* <div className="space-y-4 mt-8">
                 <p className="text-yellow-300 text-xl md:text-2xl font-bold tracking-wide animate-pulse">
                   CUENTA REGRESIVA PARA EL INICIO DE VENTAS
                 </p>
                 <CountdownTimer targetDate="2025-04-09T18:00:00-05:00" />
-              </div>
+              </div> */}
             </div>
             <div className="relative">
               <div className="absolute -top-24 -right-6 animate-spin-slow text-yellow-400">
@@ -188,7 +172,7 @@ const Page: FC<PageProps> = () => {
                 document.getElementById("categorias")?.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              ¡RESERVA TU CUPO AHORA!
+              ¡INSCRIBETE AHORA!
             </Button>
             <Button
               size="lg"

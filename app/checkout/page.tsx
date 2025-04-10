@@ -1574,14 +1574,146 @@ export default function CheckoutPage() {
                             <ArrowLeft className="h-4 w-4" />
                             Volver
                           </Button>
-                          <Button
-                            type="submit"
-                            className="bg-green-600 hover:bg-green-700 gap-2"
-                            disabled={isSubmitting || !isCurrentStepValid()}
-                          >
-                            {isSubmitting ? "Procesando..." : "Completar pago"}
-                            <CreditCard className="h-4 w-4" />
-                          </Button>
+                          <div className="flex gap-3">
+                            <Button
+                              type="button"
+                              className="bg-blue-600 hover:bg-blue-700 gap-2"
+                              onClick={async () => {
+                                try {
+                                  // Guardar datos en localStorage
+                                  localStorage.setItem("fcfCampsFormData", JSON.stringify(formData));
+                                  
+                                  // Obtener los valores formateados
+                                  const nombreCompleto = `${formData.childName} ${formData.childLastName}`.trim();
+                                  const ciudadFormateada = formData.city === "bogota" ? "Bogotá" : "Barranquilla";
+                                  const categoriaObj = categories.find(cat => cat.id === formData.category);
+                                  const categoriaFormateada = categoriaObj ? categoriaObj.title : "";
+                                  const fechaObj = formData.city && campDates[formData.city as keyof typeof campDates]?.find(
+                                    date => date.id === formData.campDate
+                                  );
+                                  const fechaFormateada = fechaObj ? fechaObj.label : "";
+                                  
+                                  // Primero, obtener el ID del producto
+                                  const productResponse = await fetch(
+                                    "https://checkout.fcfcamps.com/wp-json/wc/v3/products?consumer_key=ck_9ce1f789475af98f1d926de780f85fe95f82a37e&consumer_secret=cs_65478296feabafc9185754f790222e4ce2ea0d30"
+                                  );
+                                  
+                                  if (!productResponse.ok) {
+                                    throw new Error("Error al obtener productos");
+                                  }
+                                  
+                                  const products = await productResponse.json();
+                                  
+                                  // Buscar el producto correspondiente a la categoría seleccionada
+                                  // Esto depende de cómo estén configurados tus productos en WooCommerce
+                                  const product = products.find(p => p.name.includes(categoriaFormateada)) || products[0];
+                                  
+                                  if (!product) {
+                                    throw new Error("No se encontró el producto correspondiente");
+                                  }
+                                  
+                                  // Crear un pedido con los datos del formulario
+                                  const orderData = {
+                                    payment_method: "bacs", // Método de pago (ajustar según corresponda)
+                                    payment_method_title: "Transferencia bancaria",
+                                    set_paid: false,
+                                    billing: {
+                                      first_name: formData.payerName.split(' ')[0],
+                                      last_name: formData.payerName.split(' ').slice(1).join(' '),
+                                      address_1: formData.payerAddress,
+                                      city: formData.payerCity,
+                                      country: formData.payerCountry,
+                                      email: formData.payerEmail,
+                                      phone: formData.payerPhone
+                                    },
+                                    shipping: {
+                                      first_name: formData.childName,
+                                      last_name: formData.childLastName,
+                                      address_1: formData.address,
+                                      city: formData.residenceCity,
+                                      country: formData.residenceCountry
+                                    },
+                                    line_items: [
+                                      {
+                                        product_id: product.id,
+                                        quantity: 1
+                                      }
+                                    ],
+                                    meta_data: [
+                                      {
+                                        key: "participant_name",
+                                        value: nombreCompleto
+                                      },
+                                      {
+                                        key: "camp_city",
+                                        value: ciudadFormateada
+                                      },
+                                      {
+                                        key: "camp_category",
+                                        value: categoriaFormateada
+                                      },
+                                      {
+                                        key: "camp_date",
+                                        value: fechaFormateada
+                                      },
+                                      {
+                                        key: "mother_name",
+                                        value: formData.motherName
+                                      },
+                                      {
+                                        key: "mother_phone",
+                                        value: formData.motherPhone
+                                      },
+                                      {
+                                        key: "mother_email",
+                                        value: formData.motherEmail
+                                      },
+                                      {
+                                        key: "emergency_contact",
+                                        value: `${formData.emergencyName} (${formData.emergencyRelationship}): ${formData.emergencyPhone}`
+                                      }
+                                    ]
+                                  };
+                                  
+                                  // Crear el pedido en WooCommerce
+                                  const orderResponse = await fetch(
+                                    "https://checkout.fcfcamps.com/wp-json/wc/v3/orders?consumer_key=ck_9ce1f789475af98f1d926de780f85fe95f82a37e&consumer_secret=cs_65478296feabafc9185754f790222e4ce2ea0d30",
+                                    {
+                                      method: "POST",
+                                      headers: {
+                                        "Content-Type": "application/json"
+                                      },
+                                      body: JSON.stringify(orderData)
+                                    }
+                                  );
+                                  
+                                  if (!orderResponse.ok) {
+                                    throw new Error("Error al crear el pedido");
+                                  }
+                                  
+                                  const order = await orderResponse.json();
+                                  
+                                  // Redireccionar a la página de pago de WooCommerce
+                                  window.open(order.payment_url, "_blank");
+                                  
+                                } catch (error) {
+                                  console.error("Error en el proceso de checkout:", error);
+                                  alert("Hubo un problema al procesar tu pedido. Por favor, intenta nuevamente.");
+                                }
+                              }}
+                            >
+                              Ir a checkout externo
+                              <ArrowRight className="h-4 w-4" />
+                            </Button>
+                            <Button
+                              type="submit"
+                              className="bg-green-600 hover:bg-green-700 gap-2"
+                              disabled={isSubmitting || !isCurrentStepValid()}
+                            >
+                              {isSubmitting ? "Procesando..." : "Completar pago"}
+                              <CreditCard className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
                       </motion.div>
                     )}

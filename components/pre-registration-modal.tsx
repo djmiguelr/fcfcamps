@@ -97,7 +97,6 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
     return Object.keys(newErrors).length === 0
   }
 
-  // Modificar la función handleNextStep para incluir el nuevo paso
   const handleNextStep = () => {
     if (step === 1) {
       if (selectedDate) {
@@ -128,29 +127,82 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/submit-form', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ciudad: city,
-          fechaPreferida: selectedDate,
-          categoria: selectedCategory,
-          nombre: formData.name,
-          email: formData.email,
-          telefono: formData.phone,
-          timestamp: new Date().toISOString(),
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Error al enviar el formulario');
+      const nombreCompleto = formData.name.trim();
+      const ciudadFormateada = city;
+      const categoriaFormateada = selectedCategory;
+      const fechaFormateada = selectedDate;
+      const consumerKey = "ck_9ce1f789475af98f1d926de780f85fe95f82a37e";
+      const consumerSecret = "cs_65478296feabafc9185754f790222e4ce2ea0d30";
+      
+      const productResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wc/v3/products?consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`
+      );
+ 
+      if (!productResponse.ok) {
+        throw new Error("Error al obtener productos");
       }
+      
+      const products = await productResponse.json();
+      
+      const product = products.find(p => p.name.includes(ciudadFormateada)) || products[0];
 
-      // Si todo sale bien, guardamos en localStorage y mostramos éxito
+      if (!product) {
+        throw new Error("No se encontró el producto correspondiente");
+      }
+      
+      const orderData = {
+        payment_method: "bacs",
+        payment_method_title: "Transferencia bancaria",
+        set_paid: false,
+        billing: {
+          first_name: formData.name.split(' ')[0],
+          last_name: formData.name.split(' ').slice(1).join(' '),
+          email: formData.email,
+          phone: formData.phone
+        },
+        line_items: [
+          {
+            product_id: product.id,
+            quantity: 1
+          }
+        ],
+        meta_data: [
+          {
+            key: "participant_name",
+            value: nombreCompleto
+          },
+          {
+            key: "camp_city",
+            value: ciudadFormateada
+          },
+          {
+            key: "camp_category",
+            value: categoriaFormateada
+          },
+          {
+            key: "camp_date",
+            value: fechaFormateada
+          }
+        ]
+      };
+      
+      const orderResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wc/v3/orders?consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(orderData)
+        }
+      );
+      
+      if (!orderResponse.ok) {
+        throw new Error("Error al crear el pedido");
+      }
+      
+      const order = await orderResponse.json();
+
       localStorage.setItem(
         "fcfCampsPreRegistration",
         JSON.stringify({
@@ -158,14 +210,47 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
           date: selectedDate,
           category: selectedCategory,
           ...formData,
+          orderId: order.id,
+          paymentUrl: order.payment_url
         }),
       );
 
-      setIsSuccess(true);
+      const paymentWindow = window.open(`${process.env.NEXT_PUBLIC_WORDPRESS_URL}/checkout/order-pay/${order.id}/?pay_for_order=true&key=${order.order_key}`, "_blank");
+
+      window.addEventListener('message', function(event) {
+        if (event.data && event.data.paymentComplete && event.data.orderId === order.id) {
+          setIsSuccess(true);
+          if (paymentWindow && !paymentWindow.closed) {
+            paymentWindow.close();
+          }
+        }
+      });
+      
+      const checkPaymentStatus = async () => {
+        try {
+          const statusResponse = await fetch(
+            `${process.env.NEXT_PUBLIC_WORDPRESS_URL}/wp-json/wc/v3/orders/${order.id}?consumer_key=${consumerKey}&consumer_secret=${consumerSecret}`
+          );
+          
+          if (statusResponse.ok) {
+            const orderStatus = await statusResponse.json();
+            if (orderStatus.status === 'completed' || orderStatus.status === 'processing') {
+              setIsSuccess(true);
+            }
+          }
+        } catch (error) {
+          console.error('Error al verificar estado del pago:', error);
+        }
+      };
+      
+      const paymentCheckInterval = setInterval(checkPaymentStatus, 30000);
+      
+      return () => clearInterval(paymentCheckInterval);
+      
     } catch (error) {
       console.error('Error:', error);
       setErrors({
-        submit: 'Hubo un error al enviar el formulario. Por favor intenta de nuevo.',
+        submit: 'Hubo un error al procesar tu pedido. Por favor intenta de nuevo.',
       });
     } finally {
       setIsSubmitting(false);
@@ -173,7 +258,6 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
   };
 
   const handleClose = () => {
-    // Reset state when closing
     setStep(1)
     setSelectedDate("")
     setSelectedCategory("")
@@ -217,7 +301,7 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
 
             {/* Header */}
             <div className="bg-blue-600 p-6 text-white">
-              <h2 className="text-xl font-bold">Pre-inscripción FCF Camps 2025</h2>
+              <h2 className="text-xl font-bold">Inscripción FCF Camps 2025</h2>
               <p className="text-blue-100">Sede {city}</p>
             </div>
 
@@ -230,8 +314,7 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
                   </div>
                   <h3 className="text-xl font-bold text-green-700 mb-2">¡Felicidades!</h3>
                   <p className="text-gray-600 mb-6">
-                    Estás pre-inscrito en FCF Camps. Dentro de poco te contactaremos para inscribir a tu hijo en los FCF
-                    Camps.
+                    Estás inscrito en FCF Camps. Dentro de poco te contactaremos para finalizar el proceso de inscripción a tu hijo en los FCF Camps.
                   </p>
                   <Button onClick={handleClose} className="bg-blue-600 hover:bg-blue-700">
                     Cerrar
@@ -614,7 +697,7 @@ export function PreRegistrationModal({ isOpen, onClose, city, availableDates }: 
                           className="bg-blue-600 hover:bg-blue-700"
                           disabled={isSubmitting}
                         >
-                          {isSubmitting ? "Enviando..." : "Completar pre-inscripción"}
+                          {isSubmitting ? "Enviando..." : "Completar inscripción"}
                         </Button>
                       </div>
                     </div>
